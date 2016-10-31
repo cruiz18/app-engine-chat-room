@@ -7,7 +7,9 @@
     font-family: 'Helvetica';
     font-size: 20px;
     font-weight: bold;
-    background-color: green;
+    background-image: url("http://www.onpointpreparedness.net/wp-content/uploads/2015/01/45202-black-wood.jpg");
+    background-size:100% 100%;
+    background-attachment:fixed;
   }
 
   #chat {
@@ -25,11 +27,17 @@
   .message {
     margin: 1em 0;
   }
+
+  #submitButton {
+    background-color: #199600;
+    color:gray;
+  }
 </style>
 
 <div id="chat">
   <div id="messages"></div>
   <input disabled placeholder="Connecting..." id="newmessage"></input>
+  <button id="submitButton">Submit</button>
 </div>
 
 <!-- Imports jQuery -->
@@ -60,11 +68,20 @@
   };
 channel.open(handler);
 
+function confused(){
+  $.post('/send', {data: newmessage.val()});
+  newmessage.val('');
+};
+
+//Submit message
+$("#submitButton").click(function(){
+  confused();
+});
+
 // Enter-button handler, i.e. send a message.
 newmessage.on('keypress', function(e) {
   if (e.key === 'Enter' && newmessage.val() !== '') {
-    $.post('/send', {data: newmessage.val()});
-    newmessage.val('');
+    confused();
   };
 });
 
