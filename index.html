@@ -7,7 +7,7 @@
     font-family: 'Helvetica';
     font-size: 20px;
     font-weight: bold;
-    background-image: url("http://www.onpointpreparedness.net/wp-content/uploads/2015/01/45202-black-wood.jpg");
+    background-image: url("https://static.pexels.com/photos/139312/pexels-photo-139312.jpeg");
     background-size:100% 100%;
     background-attachment:fixed;
   }
@@ -60,8 +60,13 @@
       newmessage.focus();
     },
     'onmessage': function(m) {
+      var msg= m.data;
+      msg= msg.replace('/shruggie',' ¯\_(ツ)_/¯');
+      messages.append('<p class="message">' + msg + '</p>');
+      msg=msg.replace('/laughgif', "url('http://www.midwestsportsfans.com/wp-content/uploads/2011/06/mj-laughing.gif')")
+
       // Blindly append the message to the end of the element.
-      messages.append('<p class="message">' + m.data + '</p>');
+      //messages.append('<p class="message">' + m.data + '</p>');
     },
     'onerror': function() {}, // No-op.
     'onclose': function() {}, // No-op.
